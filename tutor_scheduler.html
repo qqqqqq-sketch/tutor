@@ -136,6 +136,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <span class="sync-status" id="syncStatus"></span>
+      <button class="btn" id="debugBtn" onclick="debugDrive()" style="display:none;font-size:11px;padding:6px 10px;">🔍 檢查雲端</button>
       <button class="btn primary" id="authBtn" onclick="handleAuthClick()">🔑 Google 登入</button>
     </div>
   </div>
@@ -258,12 +259,38 @@ async function fetchUserInfo(){
 function updateAuthUI(){
   const info=document.getElementById('authInfo');
   const btn=document.getElementById('authBtn');
+  const dbg=document.getElementById('debugBtn');
   if(userInfo&&accessToken){
     info.innerHTML=`<img class="auth-avatar" src="${userInfo.picture}" referrerpolicy="no-referrer"><div><div class="auth-name">${userInfo.name}</div><div class="auth-email">${userInfo.email}</div></div>`;
     btn.textContent='登出';btn.className='btn';
+    dbg.style.display='';
   } else {
     info.innerHTML=`<div style="font-size:13px;color:#888;">尚未登入 Google</div>`;
     btn.textContent='🔑 Google 登入';btn.className='btn primary';
+    dbg.style.display='none';
+  }
+}
+
+async function debugDrive(){
+  if(!accessToken){alert('請先登入');return;}
+  try{
+    const q=encodeURIComponent(`name='${FILE_NAME}' and spaces='appDataFolder' and trashed=false`);
+    const r=await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=${q}&fields=files(id,name,modifiedTime,size)`,{headers:{Authorization:'Bearer '+accessToken}});
+    const data=await r.json();
+    if(!data.files||data.files.length===0){
+      alert('雲端 appDataFolder 裡找不到 '+FILE_NAME+'\n\n本地目前有 '+sessions.length+' 筆資料');
+      return;
+    }
+    let msg=`找到 ${data.files.length} 個檔案：\n\n`;
+    for(const f of data.files){
+      msg+=`檔名: ${f.name}\nID: ${f.id}\n修改時間: ${f.modifiedTime}\n大小: ${f.size||'?'} bytes\n\n`;
+    }
+    const fr=await fetch(`https://www.googleapis.com/drive/v3/files/${data.files[0].id}?alt=media`,{headers:{Authorization:'Bearer '+accessToken}});
+    const remote=await fr.json();
+    msg+=`第一個檔案內容筆數: ${Array.isArray(remote)?remote.length:'非陣列'}\n本地目前筆數: ${sessions.length}\n登入帳號: ${userInfo.email}`;
+    alert(msg);
+  }catch(e){
+    alert('檢查失敗: '+e.message);
   }
 }
 
