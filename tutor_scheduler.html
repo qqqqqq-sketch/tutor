@@ -45,7 +45,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
 .session-bar.tentative{background:#BA7517;}
 .session-bar.cancelled{background:#A32D2D;}
 .session-info{flex:1;min-width:0;}
-.session-name{font-size:14px;font-weight:600;color:#1a1a18;}
+.session-name{font-size:13px;font-weight:600;color:#1a1a18;}
 .session-meta{font-size:12px;color:#666;margin-top:2px;}
 .session-notes{font-size:11px;color:#999;margin-top:3px;white-space:pre-wrap;}
 .session-edit{background:#fff;border:0.5px solid #ccc;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer;color:#555;white-space:nowrap;}
@@ -54,7 +54,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
 .btn{padding:8px 14px;border-radius:8px;font-size:13px;cursor:pointer;border:0.5px solid #ccc;background:#fff;color:#1a1a18;}
 .btn.primary{background:#185FA5;color:#fff;border-color:#185FA5;}
 .btn.danger{background:#FCEBEB;color:#A32D2D;border-color:#F7C1C1;}
-.btn.green{background:#1A7340;color:#fff;border-color:#1A7340;}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
 @media(min-width:500px){.modal-overlay{align-items:center;}}
@@ -84,23 +83,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
 .del-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
 .del-opts label{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;}
 .del-opts input[type=radio]{width:18px;height:18px;accent-color:#185FA5;}
-.dist-section{background:#fff;border-radius:12px;padding:14px;margin-top:14px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
-.dist-section h4{font-size:13px;font-weight:500;color:#555;margin-bottom:10px;}
-.dist-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
-.dist-row input{padding:10px 12px;border:1px solid #ddd;border-radius:10px;font-size:14px;width:100%;background:#fff;color:#1a1a18;}
-.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:#185FA5;color:#fff;border:none;border-radius:10px;font-size:15px;cursor:pointer;font-weight:500;}
-.maps-hint{font-size:11px;color:#aaa;margin-top:8px;text-align:center;line-height:1.6;}
-.maps-link{display:inline-block;font-size:12px;color:#185FA5;text-decoration:none;margin-top:3px;}
-/* Google 登入區塊 */
 .auth-bar{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
 .auth-info{display:flex;align-items:center;gap:10px;}
 .auth-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;}
 .auth-name{font-size:13px;font-weight:500;color:#1a1a18;}
 .auth-email{font-size:11px;color:#888;}
-.sync-status{font-size:11px;color:#888;margin-top:2px;}
+.sync-status{font-size:11px;color:#888;}
 .sync-status.ok{color:#1A7340;}
 .sync-status.err{color:#A32D2D;}
 .sync-status.syncing{color:#BA7517;}
+/* 收入統計 */
+.income-chart{background:#fff;border-radius:12px;padding:14px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.income-chart-title{font-size:13px;font-weight:600;color:#555;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.income-year-nav{display:flex;align-items:center;gap:8px;}
+.income-year-nav button{background:none;border:0.5px solid #ccc;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px;}
+.income-bars{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;align-items:end;height:70px;margin-bottom:4px;}
+.income-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.income-bar{width:100%;background:#B5D4F4;border-radius:3px 3px 0 0;min-height:2px;cursor:pointer;transition:background 0.1s;}
+.income-bar:hover{background:#185FA5;}
+.income-bar.active{background:#185FA5;}
+.income-bar-label{font-size:9px;color:#aaa;}
+.income-bar-val{font-size:8px;color:#888;text-align:center;}
+/* 快速列表 */
+.quick-section{background:#fff;border-radius:12px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.06);overflow:hidden;}
+.quick-tabs{display:flex;border-bottom:0.5px solid #e5e3dc;}
+.quick-tab{flex:1;padding:10px;text-align:center;font-size:13px;cursor:pointer;color:#888;background:#fff;}
+.quick-tab.active{color:#185FA5;font-weight:600;border-bottom:2px solid #185FA5;}
+.quick-list{padding:0 14px;}
+.quick-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid #f0eeea;cursor:pointer;}
+.quick-item:last-child{border-bottom:none;}
+.quick-item:hover{opacity:0.8;}
+.quick-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.quick-dot.confirmed{background:#378ADD;}
+.quick-dot.tentative{background:#EF9F27;}
+.quick-info{flex:1;min-width:0;}
+.quick-name{font-size:13px;font-weight:600;color:#1a1a18;}
+.quick-meta{font-size:11px;color:#888;margin-top:1px;}
+.quick-date{font-size:11px;color:#185FA5;font-weight:500;white-space:nowrap;}
+.quick-empty{padding:16px;text-align:center;font-size:13px;color:#aaa;}
+.maps-link{display:inline-block;font-size:12px;color:#185FA5;text-decoration:none;margin-top:3px;}
 </style>
 </head>
 <body>
@@ -109,28 +130,53 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
     <h1 style="font-size:18px;font-weight:600;">📚 家教行事曆</h1>
   </div>
 
-  <!-- Google 登入狀態 -->
   <div class="auth-bar" id="authBar">
     <div class="auth-info" id="authInfo">
       <div style="font-size:13px;color:#888;">尚未登入 Google</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <span class="sync-status" id="syncStatus"></span>
-      <button class="btn" id="authBtn" onclick="handleAuthClick()">🔑 Google 登入</button>
+      <button class="btn primary" id="authBtn" onclick="handleAuthClick()">🔑 Google 登入</button>
     </div>
   </div>
 
+  <!-- 本月收入 + 暫定 -->
   <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-label">本月確認課程</div>
-      <div class="stat-value" id="statSessions">0 堂</div>
-      <div class="stat-sub" id="statHours">0 小時</div>
-    </div>
     <div class="stat-card">
       <div class="stat-label">本月預估收入</div>
       <div class="stat-value" id="statIncome">NT$0</div>
-      <div class="stat-sub" id="statTentative">暫定 0 位</div>
+      <div class="stat-sub" id="statHours">確認 0 堂・0h</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-label">暫定學生</div>
+      <div class="stat-value" id="statTentative">0 位</div>
+      <div class="stat-sub" id="statTentativeCount">0 堂待確認</div>
+    </div>
+  </div>
+
+  <!-- 各月收入長條圖 -->
+  <div class="income-chart">
+    <div class="income-chart-title">
+      <span>📊 各月收入</span>
+      <div class="income-year-nav">
+        <button onclick="changeYear(-1)">‹</button>
+        <span id="incomeYear" style="font-size:13px;font-weight:600;"></span>
+        <button onclick="changeYear(1)">›</button>
+      </div>
+    </div>
+    <div class="income-bars" id="incomeBars"></div>
+    <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:3px;">
+      <div id="incomeLabels"></div>
+    </div>
+  </div>
+
+  <!-- 近期/暫定快速列表 -->
+  <div class="quick-section">
+    <div class="quick-tabs">
+      <div class="quick-tab active" id="qtab1" onclick="switchQuickTab(1)">⏰ 近期課堂</div>
+      <div class="quick-tab" id="qtab2" onclick="switchQuickTab(2)">🟡 暫定課堂</div>
+    </div>
+    <div class="quick-list" id="quickList"></div>
   </div>
 
   <div class="top-bar">
@@ -148,16 +194,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
   </div>
 
   <div id="dayPanel" style="display:none;"></div>
-
-  <div class="dist-section">
-    <h4>📍 路線查詢（機車導航）</h4>
-    <div class="dist-row">
-      <input type="text" id="distFrom" placeholder="出發地（可不填）" />
-      <input type="text" id="distTo" placeholder="目的地（學生地址）" />
-    </div>
-    <button class="maps-btn" id="openMaps">🗺 開啟 Google Maps 導航</button>
-    <div class="maps-hint">點擊後以機車模式開啟 Google Maps，可直接看距離與騎車時間</div>
-  </div>
 </div>
 
 <div class="modal-overlay" id="modalOverlay">
@@ -172,14 +208,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
 </div>
 
 <script>
-const CLIENT_ID = '486630700342-i89mpr7v0kb90eibkercl750jm7ia5m2.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyAUN-4rdHHsTdj-Fplz7PX3ZH_7p0cEFXE';
-const SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
-const FILE_NAME = 'tutor_sessions.json';
-
+const CLIENT_ID='486630700342-i89mpr7v0kb90eibkercl750jm7ia5m2.apps.googleusercontent.com';
+const API_KEY='AIzaSyAUN-4rdHHsTdj-Fplz7PX3ZH_7p0cEFXE';
+const SCOPES='https://www.googleapis.com/auth/drive.appdata';
+const FILE_NAME='tutor_sessions.json';
 const DOW_LABELS=['日','一','二','三','四','五','六'];
+
 let sessions=JSON.parse(localStorage.getItem('tutorSessions')||'[]');
 let currentDate=new Date();
+let incomeYear=new Date().getFullYear();
 let selectedDate=null;
 let editingId=null;
 let modalTab=1;
@@ -187,25 +224,18 @@ let selDows=[];
 let accessToken=null;
 let driveFileId=null;
 let userInfo=null;
+let quickTab=1;
 
-// ── 日期工具 ──
-function dateStr(d){
-  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${day}`;
-}
+function dateStr(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`;}
 function todayStr(){return dateStr(new Date());}
 function timeToMin(t){const[h,m]=t.split(':').map(Number);return h*60+m;}
-
-// ── 本地儲存 ──
 function saveLocal(){localStorage.setItem('tutorSessions',JSON.stringify(sessions));}
 
 // ── Google 登入 ──
 function handleAuthClick(){
   if(accessToken){
-    // 登出
     accessToken=null;userInfo=null;driveFileId=null;
-    updateAuthUI();
-    setSyncStatus('');
+    updateAuthUI();setSyncStatus('');
   } else {
     const client=google.accounts.oauth2.initTokenClient({
       client_id:CLIENT_ID,
@@ -213,10 +243,7 @@ function handleAuthClick(){
       callback:(resp)=>{
         if(resp.error){setSyncStatus('登入失敗','err');return;}
         accessToken=resp.access_token;
-        fetchUserInfo().then(()=>{
-          updateAuthUI();
-          syncFromDrive();
-        });
+        fetchUserInfo().then(()=>{updateAuthUI();syncFromDrive();});
       }
     });
     client.requestAccessToken();
@@ -233,53 +260,37 @@ function updateAuthUI(){
   const btn=document.getElementById('authBtn');
   if(userInfo&&accessToken){
     info.innerHTML=`<img class="auth-avatar" src="${userInfo.picture}" referrerpolicy="no-referrer"><div><div class="auth-name">${userInfo.name}</div><div class="auth-email">${userInfo.email}</div></div>`;
-    btn.textContent='登出';
-    btn.className='btn';
+    btn.textContent='登出';btn.className='btn';
   } else {
     info.innerHTML=`<div style="font-size:13px;color:#888;">尚未登入 Google</div>`;
-    btn.textContent='🔑 Google 登入';
-    btn.className='btn primary';
+    btn.textContent='🔑 Google 登入';btn.className='btn primary';
   }
 }
 
 function setSyncStatus(msg,type=''){
   const el=document.getElementById('syncStatus');
-  el.textContent=msg;
-  el.className='sync-status'+(type?' '+type:'');
+  el.textContent=msg;el.className='sync-status'+(type?' '+type:'');
 }
 
-// ── Google Drive 同步 ──
 async function syncFromDrive(){
   if(!accessToken)return;
   setSyncStatus('同步中…','syncing');
   try {
-    // 搜尋檔案
     const q=encodeURIComponent(`name='${FILE_NAME}' and spaces='appDataFolder' and trashed=false`);
-    const r=await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=${q}&fields=files(id,name)`,{
-      headers:{Authorization:'Bearer '+accessToken}
-    });
+    const r=await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=${q}&fields=files(id,name)`,{headers:{Authorization:'Bearer '+accessToken}});
     const data=await r.json();
     if(data.files&&data.files.length>0){
       driveFileId=data.files[0].id;
-      // 下載資料
-      const fr=await fetch(`https://www.googleapis.com/drive/v3/files/${driveFileId}?alt=media`,{
-        headers:{Authorization:'Bearer '+accessToken}
-      });
+      const fr=await fetch(`https://www.googleapis.com/drive/v3/files/${driveFileId}?alt=media`,{headers:{Authorization:'Bearer '+accessToken}});
       const remote=await fr.json();
-      // 合併：以 Drive 為主，補上本地沒有的
       const remoteIds=new Set(remote.map(s=>s.id));
       const localOnly=sessions.filter(s=>!remoteIds.has(s.id));
       sessions=[...remote,...localOnly];
-      saveLocal();
-      renderMonth();
-      setSyncStatus('✓ 已同步','ok');
+      saveLocal();renderAll();setSyncStatus('✓ 已同步','ok');
     } else {
-      // 沒有檔案，上傳本地資料
       await saveToDrive();
     }
-  } catch(e){
-    setSyncStatus('同步失敗','err');
-  }
+  } catch(e){setSyncStatus('同步失敗','err');}
 }
 
 async function saveToDrive(){
@@ -287,37 +298,135 @@ async function saveToDrive(){
   setSyncStatus('儲存中…','syncing');
   try {
     const body=JSON.stringify(sessions);
-    const blob=new Blob([body],{type:'application/json'});
     if(driveFileId){
-      // 更新現有檔案
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`,{
-        method:'PATCH',
-        headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},
-        body
-      });
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body});
     } else {
-      // 建立新檔案
       const meta={name:FILE_NAME,parents:['appDataFolder']};
       const form=new FormData();
       form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
-      form.append('file',blob);
-      const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{
-        method:'POST',
-        headers:{Authorization:'Bearer '+accessToken},
-        body:form
-      });
-      const d=await r.json();
-      driveFileId=d.id;
+      form.append('file',new Blob([body],{type:'application/json'}));
+      const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{Authorization:'Bearer '+accessToken},body:form});
+      const d=await r.json();driveFileId=d.id;
     }
     setSyncStatus('✓ 已儲存','ok');
-  } catch(e){
-    setSyncStatus('儲存失敗','err');
+  } catch(e){setSyncStatus('儲存失敗','err');}
+}
+
+function saveAll(){saveLocal();if(accessToken)saveToDrive();}
+
+// ── 渲染全部 ──
+function renderAll(){renderStats();renderIncomeChart();renderQuickList();renderMonth();}
+
+// ── 統計卡片 ──
+function renderStats(){
+  const y=currentDate.getFullYear(),m=currentDate.getMonth();
+  const ms=sessions.filter(s=>{const[sy,sm]=s.date.split('-').map(Number);return sy===y&&sm===m+1;});
+  const confirmed=ms.filter(s=>s.status==='confirmed');
+  const tentative=sessions.filter(s=>s.status==='tentative');
+  const totalH=confirmed.reduce((a,s)=>a+(timeToMin(s.end)-timeToMin(s.start))/60,0);
+  const totalI=confirmed.reduce((a,s)=>a+(timeToMin(s.end)-timeToMin(s.start))/60*(Number(s.rate)||0),0);
+  const uniq=[...new Set(tentative.map(s=>s.name))];
+  document.getElementById('statIncome').textContent='NT$'+Math.round(totalI).toLocaleString();
+  document.getElementById('statHours').textContent=`確認 ${confirmed.length} 堂・${totalH.toFixed(1)}h`;
+  document.getElementById('statTentative').textContent=uniq.length+' 位';
+  document.getElementById('statTentativeCount').textContent=tentative.length+' 堂待確認';
+}
+
+// ── 各月收入長條圖 ──
+function changeYear(d){incomeYear+=d;renderIncomeChart();}
+
+function renderIncomeChart(){
+  document.getElementById('incomeYear').textContent=incomeYear+'年';
+  const monthIncomes=Array.from({length:12},(_,mi)=>{
+    const ms=sessions.filter(s=>{
+      const[sy,sm]=s.date.split('-').map(Number);
+      return sy===incomeYear&&sm===mi+1&&s.status==='confirmed';
+    });
+    return ms.reduce((a,s)=>a+(timeToMin(s.end)-timeToMin(s.start))/60*(Number(s.rate)||0),0);
+  });
+  const maxI=Math.max(...monthIncomes,1);
+  const curM=new Date().getMonth();
+  const curY=new Date().getFullYear();
+  const bars=document.getElementById('incomeBars');
+  bars.innerHTML=monthIncomes.map((inc,mi)=>{
+    const h=Math.max(Math.round((inc/maxI)*60),inc>0?3:0);
+    const isActive=incomeYear===curY&&mi===curM;
+    const label=['1','2','3','4','5','6','7','8','9','10','11','12'][mi];
+    const valStr=inc>0?'$'+(inc>=1000?Math.round(inc/1000)+'k':Math.round(inc)):'';
+    return `<div class="income-bar-wrap">
+      <div style="font-size:8px;color:#aaa;text-align:center;height:14px;display:flex;align-items:flex-end;justify-content:center;">${valStr}</div>
+      <div class="income-bar${isActive?' active':''}" style="height:${h}px;" title="${mi+1}月 NT$${Math.round(inc).toLocaleString()}" onclick="jumpToMonth(${mi})"></div>
+      <div class="income-bar-label">${label}</div>
+    </div>`;
+  }).join('');
+}
+
+function jumpToMonth(mi){
+  currentDate=new Date(incomeYear,mi,1);
+  renderAll();closeDay();
+}
+
+// ── 快速列表 ──
+function switchQuickTab(n){
+  quickTab=n;
+  document.getElementById('qtab1').className='quick-tab'+(n===1?' active':'');
+  document.getElementById('qtab2').className='quick-tab'+(n===2?' active':'');
+  renderQuickList();
+}
+
+function renderQuickList(){
+  const list=document.getElementById('quickList');
+  const today=todayStr();
+  if(quickTab===1){
+    // 近期5堂：已確認、日期>=今天，時間最近的
+    const upcoming=sessions
+      .filter(s=>s.status==='confirmed'&&s.date>=today)
+      .sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start))
+      .slice(0,5);
+    if(upcoming.length===0){list.innerHTML=`<div class="quick-empty">沒有即將到來的課程</div>`;return;}
+    list.innerHTML=upcoming.map(s=>{
+      const[y,m,d]=s.date.split('-').map(Number);
+      const dd=new Date(y,m-1,d);
+      const label=dd.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',weekday:'short'});
+      const dur=((timeToMin(s.end)-timeToMin(s.start))/60).toFixed(1);
+      return `<div class="quick-item" onclick="jumpToDate('${s.date}')">
+        <div class="quick-dot confirmed"></div>
+        <div class="quick-info">
+          <div class="quick-name">${s.name}${s.subject?' · '+s.subject:''}</div>
+          <div class="quick-meta">${s.start}–${s.end} ｜ ${dur}h</div>
+        </div>
+        <div class="quick-date">${label}</div>
+      </div>`;
+    }).join('');
+  } else {
+    // 所有暫定課堂
+    const tentative=sessions
+      .filter(s=>s.status==='tentative')
+      .sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
+    if(tentative.length===0){list.innerHTML=`<div class="quick-empty">沒有暫定中的課程</div>`;return;}
+    list.innerHTML=tentative.map(s=>{
+      const[y,m,d]=s.date.split('-').map(Number);
+      const dd=new Date(y,m-1,d);
+      const label=dd.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',weekday:'short'});
+      const isPast=s.date<today;
+      return `<div class="quick-item" onclick="jumpToDate('${s.date}')">
+        <div class="quick-dot tentative"></div>
+        <div class="quick-info">
+          <div class="quick-name">${s.name}${s.subject?' · '+s.subject:''}</div>
+          <div class="quick-meta">${s.start}–${s.end}${isPast?' ・已過期':''}</div>
+        </div>
+        <div class="quick-date" style="${isPast?'color:#aaa;':''}">${label}</div>
+      </div>`;
+    }).join('');
   }
 }
 
-function saveAll(){
-  saveLocal();
-  if(accessToken)saveToDrive();
+function jumpToDate(date){
+  const[y,m]=date.split('-').map(Number);
+  currentDate=new Date(y,m-1,1);
+  incomeYear=y;
+  renderAll();
+  setTimeout(()=>openDay(date),50);
 }
 
 // ── 月曆 ──
@@ -354,21 +463,7 @@ function renderMonth(){
     if(inMonth)cell.onclick=()=>openDay(date);
     grid.appendChild(cell);
   });
-  updateStats();
-}
-
-function updateStats(){
-  const y=currentDate.getFullYear(),m=currentDate.getMonth();
-  const ms=sessions.filter(s=>{const[sy,sm]=s.date.split('-').map(Number);return sy===y&&sm===m+1;});
-  const confirmed=ms.filter(s=>s.status==='confirmed');
-  const tentative=ms.filter(s=>s.status==='tentative');
-  const totalH=confirmed.reduce((a,s)=>a+(timeToMin(s.end)-timeToMin(s.start))/60,0);
-  const totalI=confirmed.reduce((a,s)=>a+(timeToMin(s.end)-timeToMin(s.start))/60*(Number(s.rate)||0),0);
-  const uniq=[...new Set(tentative.map(s=>s.name))];
-  document.getElementById('statSessions').textContent=confirmed.length+' 堂';
-  document.getElementById('statHours').textContent=totalH.toFixed(1)+' 小時';
-  document.getElementById('statIncome').textContent='NT$'+Math.round(totalI).toLocaleString();
-  document.getElementById('statTentative').textContent='暫定 '+uniq.length+' 位';
+  renderStats();
 }
 
 // ── 日程面板 ──
@@ -386,7 +481,7 @@ function renderDayPanel(date){
   const label=dd.toLocaleDateString('zh-TW',{month:'long',day:'numeric',weekday:'short'});
   let html=`<div class="panel"><div class="panel-header"><span class="panel-title">${label}</span><div style="display:flex;gap:8px;align-items:center;"><button class="btn primary" style="padding:6px 12px;font-size:13px;" onclick="openAddModal('${date}')">＋ 新增</button><button style="background:none;border:none;font-size:20px;cursor:pointer;color:#888;" onclick="closeDay()">×</button></div></div><div class="panel-body">`;
   if(ds.length===0){
-    html+=`<div class="empty-day">這天沒有課程<br><small>點上方「新增」按鈕加入</small></div>`;
+    html+=`<div class="empty-day">這天沒有課程<br><small>點上方「新增」加入</small></div>`;
   } else {
     ds.forEach(s=>{
       const dur=((timeToMin(s.end)-timeToMin(s.start))/60).toFixed(1);
@@ -408,7 +503,7 @@ function closeDay(){selectedDate=null;document.getElementById('dayPanel').style.
 function buildTab1(d){
   const e=v=>(v||'').toString().replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   return `<div class="form-row"><label>學生姓名</label><input type="text" id="fName" value="${e(d.name)}" placeholder="例：王小明"/></div>
-  <div class="form-row"><label>科目</label><input type="text" id="fSubject" value="${e(d.subject)}" placeholder="例：數學、英文"/></div>
+  <div class="form-row"><label>科目</label><input type="text" id="fSubject" value="${e(d.subject)}" placeholder="例：數學"/></div>
   <div class="two-col">
     <div class="form-row"><label>開始日期</label><input type="date" id="fDate" value="${e(d.date)}"/></div>
     <div class="form-row"><label>狀態</label><select id="fStatus">
@@ -447,13 +542,11 @@ function openAddModal(date){
   const d={name:'',subject:'',date:date||selectedDate||todayStr(),start:'15:00',end:'17:00',rate:600,status:'confirmed',notes:'',location:'',recurId:null};
   renderModal('新增課程',d,true);
 }
-
 function openEditModal(id){
   const s=sessions.find(x=>x.id===id);if(!s)return;
   editingId=id;modalTab=1;selDows=[];
   renderModal('編輯課程',s,false);
 }
-
 function renderModal(title,d,isNew){
   document.getElementById('modalTitle').textContent=title;
   document.getElementById('tabRow').innerHTML=
@@ -471,25 +564,16 @@ function renderModal(title,d,isNew){
      <button class="btn primary" onclick="saveSession()">儲存</button>`;
   document.getElementById('modalOverlay').classList.add('open');
 }
-
 function switchTab(n){
   modalTab=n;
-  [1,2,3].forEach(i=>{
-    document.getElementById('tab'+i).className='tab'+(i===n?' active':'');
-    document.getElementById('mTab'+i).style.display=i===n?'':'none';
-  });
+  [1,2,3].forEach(i=>{document.getElementById('tab'+i).className='tab'+(i===n?' active':'');document.getElementById('mTab'+i).style.display=i===n?'':'none';});
 }
-
-function toggleRecurUI(){
-  document.getElementById('recurUI').style.display=document.getElementById('fRecurOn').checked?'':'none';
-}
-
+function toggleRecurUI(){document.getElementById('recurUI').style.display=document.getElementById('fRecurOn').checked?'':'none';}
 function toggleDow(i){
   const btn=document.getElementById('dowBtn'+i);
   if(selDows.includes(i)){selDows=selDows.filter(d=>d!==i);btn.className='dow-btn';}
   else{selDows.push(i);btn.className='dow-btn sel';}
 }
-
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 
 function saveSession(){
@@ -513,8 +597,7 @@ function saveSession(){
     if(untilD<=startD){alert('結束日期必須晚於開始日期');return;}
     const newS=[];const cur=new Date(startD);
     while(cur<=untilD){
-      if(selDows.includes(cur.getDay()))
-        newS.push({...base,id:'s'+Date.now()+Math.random().toString(36).slice(2,6),date:dateStr(cur),recurId});
+      if(selDows.includes(cur.getDay()))newS.push({...base,id:'s'+Date.now()+Math.random().toString(36).slice(2,6),date:dateStr(cur),recurId});
       cur.setDate(cur.getDate()+1);
     }
     if(newS.length===0){alert('所選範圍內沒有符合的日期');return;}
@@ -526,7 +609,7 @@ function saveSession(){
     if(editingId){const idx=sessions.findIndex(s=>s.id===editingId);if(idx!==-1)sessions[idx]=session;}
     else sessions.push(session);
   }
-  saveAll();closeModal();renderMonth();
+  saveAll();closeModal();renderAll();
   if(selectedDate)renderDayPanel(selectedDate);
 }
 
@@ -547,33 +630,24 @@ function confirmDelete(id,recurId){
   } else {
     if(!confirm('確定刪除這堂課？'))return;
     sessions=sessions.filter(s=>s.id!==id);
-    saveAll();closeModal();renderMonth();
+    saveAll();closeModal();renderAll();
     if(selectedDate)renderDayPanel(selectedDate);
   }
 }
-
 function doDelete(id,recurId,btn){
   const opt=btn.closest('.del-dialog').querySelector('input[name=delOpt]:checked')?.value||'one';
   if(opt==='all')sessions=sessions.filter(s=>s.recurId!==recurId);
   else sessions=sessions.filter(s=>s.id!==id);
   btn.closest('.del-dialog').remove();
-  saveAll();closeModal();renderMonth();
+  saveAll();closeModal();renderAll();
   if(selectedDate)renderDayPanel(selectedDate);
 }
 
-// ── 事件 ──
-document.getElementById('prevMonth').onclick=()=>{currentDate.setMonth(currentDate.getMonth()-1);renderMonth();closeDay();};
-document.getElementById('nextMonth').onclick=()=>{currentDate.setMonth(currentDate.getMonth()+1);renderMonth();closeDay();};
+document.getElementById('prevMonth').onclick=()=>{currentDate.setMonth(currentDate.getMonth()-1);incomeYear=currentDate.getFullYear();renderAll();closeDay();};
+document.getElementById('nextMonth').onclick=()=>{currentDate.setMonth(currentDate.getMonth()+1);incomeYear=currentDate.getFullYear();renderAll();closeDay();};
 document.getElementById('modalOverlay').onclick=e=>{if(e.target===document.getElementById('modalOverlay'))closeModal();};
-document.getElementById('openMaps').onclick=()=>{
-  const from=document.getElementById('distFrom').value.trim();
-  const to=document.getElementById('distTo').value.trim();
-  if(!to){alert('請輸入目的地');return;}
-  const url=from?`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=two-wheeler`:`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(to)}&travelmode=two-wheeler`;
-  window.open(url,'_blank');
-};
 
-renderMonth();
+renderAll();
 </script>
 </body>
 </html>
