@@ -136,6 +136,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;back
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <span class="sync-status" id="syncStatus"></span>
+      <button class="btn" id="uploadBtn" onclick="manualUpload()" style="display:none;font-size:11px;padding:6px 10px;">⬆ 上傳</button>
       <button class="btn" id="debugBtn" onclick="debugDrive()" style="display:none;font-size:11px;padding:6px 10px;">🔍 檢查雲端</button>
       <button class="btn primary" id="authBtn" onclick="handleAuthClick()">🔑 Google 登入</button>
     </div>
@@ -260,14 +261,15 @@ function updateAuthUI(){
   const info=document.getElementById('authInfo');
   const btn=document.getElementById('authBtn');
   const dbg=document.getElementById('debugBtn');
+  const up=document.getElementById('uploadBtn');
   if(userInfo&&accessToken){
     info.innerHTML=`<img class="auth-avatar" src="${userInfo.picture}" referrerpolicy="no-referrer"><div><div class="auth-name">${userInfo.name}</div><div class="auth-email">${userInfo.email}</div></div>`;
     btn.textContent='登出';btn.className='btn';
-    dbg.style.display='';
+    dbg.style.display='';up.style.display='';
   } else {
     info.innerHTML=`<div style="font-size:13px;color:#888;">尚未登入 Google</div>`;
     btn.textContent='🔑 Google 登入';btn.className='btn primary';
-    dbg.style.display='none';
+    dbg.style.display='none';up.style.display='none';
   }
 }
 
@@ -320,23 +322,37 @@ async function syncFromDrive(){
   } catch(e){setSyncStatus('同步失敗','err');}
 }
 
-async function saveToDrive(){
-  if(!accessToken)return;
+async function saveToDrive(showError){
+  if(!accessToken)return false;
   setSyncStatus('儲存中…','syncing');
   try {
     const body=JSON.stringify(sessions);
     if(driveFileId){
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body});
+      const r=await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body});
+      if(!r.ok){const t=await r.text();throw new Error('更新失敗 '+r.status+': '+t.slice(0,200));}
     } else {
       const meta={name:FILE_NAME,parents:['appDataFolder']};
       const form=new FormData();
       form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
       form.append('file',new Blob([body],{type:'application/json'}));
       const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{Authorization:'Bearer '+accessToken},body:form});
+      if(!r.ok){const t=await r.text();throw new Error('建立失敗 '+r.status+': '+t.slice(0,200));}
       const d=await r.json();driveFileId=d.id;
     }
     setSyncStatus('✓ 已儲存','ok');
-  } catch(e){setSyncStatus('儲存失敗','err');}
+    return true;
+  } catch(e){
+    setSyncStatus('儲存失敗','err');
+    if(showError)alert('上傳失敗！\n\n'+e.message);
+    return false;
+  }
+}
+
+async function manualUpload(){
+  if(!accessToken){alert('請先登入');return;}
+  if(sessions.length===0&&!confirm('本地目前是 0 筆資料，確定要上傳（會覆蓋雲端）嗎？'))return;
+  const ok=await saveToDrive(true);
+  if(ok)alert('✓ 上傳成功！共 '+sessions.length+' 筆資料');
 }
 
 function saveAll(){saveLocal();if(accessToken)saveToDrive();}
