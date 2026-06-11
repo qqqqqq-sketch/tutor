@@ -1121,7 +1121,9 @@ async function closeModal() {
     // 成功（若伺服器說重複也當成功，避免學生重複卡住）
     myCards.add(drawnCard.id);
     submittedToday = true;
+    status.textContent = imageData ? '✅ 已送出（含圖片）' : '✅ 已送出（無圖片）'; // 診斷用
 
+    await new Promise(r => setTimeout(r, 2000)); // 讓訊息停留 2 秒
     document.getElementById('drawModal').classList.remove('show');
     btn.disabled = false;
     const justDrawn = drawnCard;
