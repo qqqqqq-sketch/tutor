@@ -794,6 +794,7 @@ async function doLogin() {
     myCards = new Set((colRes.cards || []).map(Number));
     // 本地打卡狀態（同裝置當天的上傳記錄）
     localCheckedIn = localStorage.getItem(`ci_${val}_${today()}`) === '1';
+    imageData      = localStorage.getItem(`img_${val}_${today()}`) || ''; // 恢復 imgBB 連結
     hideLoading();
     showMain();
     renderMain();
@@ -917,6 +918,7 @@ async function onFileUpload(e) {
 
   try {
     imageData = await uploadToImgBB(file); // 拿到 imgBB 圖片 URL
+    localStorage.setItem(`img_${currentStudent}_${today()}`, imageData); // 存起來防刷新遺失
   } catch(err) {
     console.error('imgBB 上傳失敗:', err);
     imageData = '';
