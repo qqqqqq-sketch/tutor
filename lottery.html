@@ -1104,7 +1104,7 @@ async function closeModal() {
   const btn    = document.getElementById('modalCloseBtn');
   const status = document.getElementById('submitStatus');
   btn.disabled    = true;
-  status.textContent = '送出中... ⏳';
+  status.textContent = imageData ? '送出中（含圖片）⏳' : '送出中（無圖片）⏳';
 
   try {
     const res = await api({
